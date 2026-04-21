@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Protótipo Armação - Testes de Campo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #f3f0e8;
+            --paper: #fffdf8;
+            --ink: #16222f;
+            --muted: #4e5c68;
+            --line: #d4ccc0;
+            --accent: #005f73;
+            --accent-2: #9b2226;
+            --card-shadow: rgba(22, 34, 47, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Space Grotesk", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(1000px 460px at 15% -12%, #e3f0ef 0%, transparent 60%),
+                radial-gradient(850px 440px at 100% -18%, #f5e5d8 0%, transparent 56%),
+                var(--bg);
+        }
+
+        .wrap {
+            width: min(1220px, 94vw);
+            margin: 0 auto;
+            padding: 28px 0 48px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a3d62, #005f73 58%, #0a9396);
+            color: #fff;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 12px 26px var(--card-shadow);
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+            line-height: 1.15;
+            letter-spacing: 0.02em;
+        }
+
+        .hero p {
+            margin: 12px 0 0;
+            max-width: 880px;
+            font-size: 1rem;
+            line-height: 1.52;
+            opacity: 0.96;
+        }
+
+        .meta {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            padding: 7px 12px;
+            font-size: 0.8rem;
+        }
+
+        .section {
+            margin-top: 20px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: 0 8px 18px rgba(22, 34, 47, 0.07);
+        }
+
+        .section h2 {
+            margin: 0 0 10px;
+            font-size: 1.18rem;
+            color: var(--accent);
+        }
+
+        .section p,
+        .section li {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.52;
+            font-size: 0.95rem;
+        }
+
+        .section ul {
+            margin: 10px 0 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .maps {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .map-card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(22, 34, 47, 0.07);
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+        }
+
+        .map-head {
+            padding: 14px 14px 10px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .map-head h3 {
+            margin: 0;
+            color: var(--ink);
+            font-size: 1rem;
+        }
+
+        .map-head p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.45;
+        }
+
+        .map-actions {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #ece7dd;
+            color: #21313f;
+        }
+
+        .map-frame {
+            width: 100%;
+            min-height: 540px;
+            border: 0;
+            display: block;
+            background: #d8d8d8;
+        }
+
+        .foot {
+            margin-top: 22px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .foot strong { color: var(--accent-2); }
+
+        @media (max-width: 980px) {
+            .maps { grid-template-columns: 1fr; }
+            .map-frame { min-height: 460px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap">
+        <header class="hero">
+            <h1>Protótipo Armação - Página Pública de Teste de Campo</h1>
+            <p>
+                Esta página apresenta duas versões operacionais de mapa para apoiar o planejamento e a validação
+                metodológica em campo no âmbito do Projeto de Mestrado. O objetivo é tornar o processo transparente
+                para todos que acessarem o produto e facilitar comparações entre as abordagens cartográficas.
+            </p>
+            <div class="meta">
+                <span class="chip">Projeto de Mestrado - PPGOceano/UFSC</span>
+                <span class="chip">Autor: Ronan Armando Caetano</span>
+                <span class="chip">Ano-base: 2026</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>O Que Pretendemos Testar Em Campo</h2>
+            <ul>
+                <li>Facilidade de navegação da equipe entre pontos de referência, com identificação visual rápida.</li>
+                <li>Leitura e interpretação das camadas de trabalho (coleta, foto, drone, secchi e água).</li>
+                <li>Consistência espacial dos elementos exportados em PNG para documentação técnica.</li>
+                <li>Tempo de execução das tarefas de campo com e sem apoio das versões alternativas de mapa.</li>
+                <li>Clareza do produto para usuários externos (voluntários, parceiros institucionais e revisores).</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Como Ler Esta Página</h2>
+            <p>
+                Os dois mapas abaixo podem ser usados em paralelo para comparação. Cada bloco possui atalho para abrir
+                a versão completa em nova guia. Durante os testes, registre observações sobre usabilidade, legibilidade,
+                desempenho da exportação e aderência ao protocolo de campo.
+            </p>
+        </section>
+
+        <section class="maps" aria-label="Mapas para comparação">
+            <article class="map-card">
+                <div class="map-head">
+                    <h3>Mapa A - Clone Operacional</h3>
+                    <p>Versão de referência do protótipo com filtros e painéis clássicos para exploração dos pontos.</p>
+                </div>
+                <div class="map-actions">
+                    <a class="btn btn-primary" href="05_gis_mapas/mapa_prototipo_armacao_clone.html" target="_blank" rel="noopener noreferrer">Abrir versão completa</a>
+                </div>
+                <iframe class="map-frame" src="05_gis_mapas/mapa_prototipo_armacao_clone.html" title="Mapa A - Clone Operacional"></iframe>
+            </article>
+
+            <article class="map-card">
+                <div class="map-head">
+                    <h3>Mapa B - Infra Clone + Render</h3>
+                    <p>Versão adaptada para exportação cartográfica robusta com fluxo local de render para PNG.</p>
+                </div>
+                <div class="map-actions">
+                    <a class="btn btn-primary" href="05_gis_mapas/mapa_prototipo_armacao_infra_clone.html" target="_blank" rel="noopener noreferrer">Abrir versão completa</a>
+                    <a class="btn btn-secondary" href="05_gis_mapas/pagina_impressao_prototipo_armacao.html" target="_blank" rel="noopener noreferrer">Abrir página de impressão</a>
+                </div>
+                <iframe class="map-frame" src="05_gis_mapas/mapa_prototipo_armacao_infra_clone.html" title="Mapa B - Infra Clone"></iframe>
+            </article>
+        </section>
+
+        <footer class="foot">
+            <strong>Projeto de Mestrado - PPGOceano/UFSC - 2026</strong><br />
+            Autor: Ronan Armando Caetano<br />
+            Programa: Pós-Graduação em Oceanografia (PPGOceano/UFSC) / CAPES
+        </footer>
+    </main>
+</body>
+</html>

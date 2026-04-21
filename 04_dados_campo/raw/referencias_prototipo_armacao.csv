@@ -1,0 +1,43 @@
+name,lat,lon,layer
+Ponta das Campanhas,-27.749367,-48.499284,quadrat_photo
+Ponto 1,-27.750445,-48.500327,quadrat_photo
+Ponto 2,-27.749546,-48.500338,quadrat_photo
+Ponto 3,-27.748517,-48.498916,quadrat_photo
+Ponto 4,-27.747794,-48.499240,quadrat_photo
+Ilha de Fora,-27.747719,-48.498424,quadrat_photo
+Ponta das Campanhas,-27.749367,-48.499284,water_sample_lab
+Ponto 1,-27.750445,-48.500327,water_sample_lab
+Ponto 2,-27.749546,-48.500338,water_sample_lab
+Ponto 3,-27.748517,-48.498916,water_sample_lab
+Ponto 4,-27.747794,-48.499240,water_sample_lab
+Ilha de Fora,-27.747719,-48.498424,water_sample_lab
+Ponta das Campanhas,-27.749367,-48.499284,water_probe
+Ponto 1,-27.750445,-48.500327,water_probe
+Ponto 2,-27.749546,-48.500338,water_probe
+Ponto 3,-27.748517,-48.498916,water_probe
+Ponto 4,-27.747794,-48.499240,water_probe
+Ilha de Fora,-27.747719,-48.498424,water_probe
+Ponta das Campanhas,-27.749367,-48.499284,secchi
+Ponto 1,-27.750445,-48.500327,secchi
+Ponto 2,-27.749546,-48.500338,secchi
+Ponto 3,-27.748517,-48.498916,secchi
+Ponto 4,-27.747794,-48.499240,secchi
+Ilha de Fora,-27.747719,-48.498424,secchi
+Ponta das Campanhas,-27.749367,-48.499284,drone
+Ponto 1,-27.750445,-48.500327,drone
+Ponto 2,-27.749546,-48.500338,drone
+Ponto 3,-27.748517,-48.498916,drone
+Ponto 4,-27.747794,-48.499240,drone
+Ilha de Fora,-27.747719,-48.498424,drone
+Ponta das Campanhas,-27.749367,-48.499284,algae_collect_taxonomy
+Ponto 1,-27.750445,-48.500327,algae_collect_taxonomy
+Ponto 2,-27.749546,-48.500338,algae_collect_taxonomy
+Ponto 3,-27.748517,-48.498916,algae_collect_taxonomy
+Ponto 4,-27.747794,-48.499240,algae_collect_taxonomy
+Ilha de Fora,-27.747719,-48.498424,algae_collect_taxonomy
+Ponta das Campanhas,-27.749367,-48.499284,algae_photo_in_situ
+Ponto 1,-27.750445,-48.500327,algae_photo_in_situ
+Ponto 2,-27.749546,-48.500338,algae_photo_in_situ
+Ponto 3,-27.748517,-48.498916,algae_photo_in_situ
+Ponto 4,-27.747794,-48.499240,algae_photo_in_situ
+Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ
