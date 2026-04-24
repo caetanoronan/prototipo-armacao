@@ -584,6 +584,8 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
         const activeLayers = new Set(Object.keys(LAYER_COLORS));
         const queryState = new URLSearchParams(window.location.search);
         let currentBaseLayer = 'osm';
+        const DEFAULT_CLOUD_RENDER = 'https://SEU-SERVICO-RENDER.onrender.com';
+        const DEFAULT_LOCAL_RENDER = 'http://127.0.0.1:3030';
 
         window.__mapReady = false;
 
@@ -852,20 +854,47 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
             const layers = Array.from(activeLayers).join(',');
             const ref = activeReferenceName || '';
             const base = currentBaseLayer;
-            const endpoint = `http://127.0.0.1:3030/render.png?layers=${encodeURIComponent(layers)}&ref=${encodeURIComponent(ref)}&base=${encodeURIComponent(base)}&filename=${encodeURIComponent(filename)}`;
+
+            const candidates = [];
+            const queryRender = (queryState.get('render') || '').trim();
+            const globalRender = (window.RENDER_SERVICE_URL || '').trim();
+            const storedRender = (localStorage.getItem('renderServiceUrl') || '').trim();
+            const cloudRender = DEFAULT_CLOUD_RENDER.includes('SEU-SERVICO-RENDER') ? '' : DEFAULT_CLOUD_RENDER;
+
+            [queryRender, globalRender, storedRender, cloudRender].forEach((url) => {
+                if (!url) return;
+                const normalized = url.replace(/\/$/, '');
+                if (!candidates.includes(normalized)) candidates.push(normalized);
+            });
+
+            if (!candidates.includes(DEFAULT_LOCAL_RENDER)) {
+                candidates.push(DEFAULT_LOCAL_RENDER);
+            }
 
             try {
-                const response = await fetch(endpoint);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const blob = await response.blob();
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.download = `${filename}.png`;
-                link.href = url;
-                link.click();
-                setTimeout(() => URL.revokeObjectURL(url), 2000);
+                let lastError = null;
+                for (const baseUrl of candidates) {
+                    const endpoint = `${baseUrl}/render.png?layers=${encodeURIComponent(layers)}&ref=${encodeURIComponent(ref)}&base=${encodeURIComponent(base)}&filename=${encodeURIComponent(filename)}`;
+                    try {
+                        const response = await fetch(endpoint);
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                        const blob = await response.blob();
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.download = `${filename}.png`;
+                        link.href = url;
+                        link.click();
+                        setTimeout(() => URL.revokeObjectURL(url), 2000);
+                        return;
+                    } catch (error) {
+                        lastError = error;
+                    }
+                }
+
+                throw lastError || new Error('Nenhum endpoint de render disponível.');
             } catch (error) {
-                alert('O serviço local de render não está ativo. Inicie render/server.js para exportar PNG com precisão cartográfica.');
+                alert('Falha ao exportar PNG. Configure um endpoint público em window.RENDER_SERVICE_URL ou localStorage.renderServiceUrl, ou inicie o serviço local em http://127.0.0.1:3030.');
             }
         }
 

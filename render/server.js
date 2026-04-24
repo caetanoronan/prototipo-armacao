@@ -5,9 +5,20 @@ const { chromium } = require('playwright');
 
 const PORT = Number(process.env.PORT || 3030);
 const MAP_FILE = path.resolve(__dirname, '..', '05_gis_mapas', 'mapa_prototipo_armacao_infra_clone.html');
+const MAP_SOURCE_URL = safeText(process.env.MAP_SOURCE_URL);
+const ALLOWED_ORIGIN = safeText(process.env.ALLOWED_ORIGIN) || '*';
+
+const DEFAULT_HEADERS = {
+  'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type'
+};
 
 function sendJson(res, statusCode, payload) {
-  res.writeHead(statusCode, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+  res.writeHead(statusCode, {
+    'Content-Type': 'application/json; charset=utf-8',
+    ...DEFAULT_HEADERS
+  });
   res.end(JSON.stringify(payload));
 }
 
@@ -15,8 +26,17 @@ function safeText(value) {
   return String(value || '').replace(/[\r\n]+/g, ' ').trim();
 }
 
+function safeFilename(value) {
+  const cleaned = safeText(value)
+    .replace(/[\\/:*?"<>|]+/g, '_')
+    .replace(/\s+/g, '_')
+    .slice(0, 120);
+  return cleaned || 'mapa_piloto_armacao';
+}
+
 function buildMapUrl(query) {
-  const url = new URL(pathToFileURL(MAP_FILE).href);
+  const source = MAP_SOURCE_URL || pathToFileURL(MAP_FILE).href;
+  const url = new URL(source);
   ['layers', 'ref', 'base'].forEach((key) => {
     const value = safeText(query[key]);
     if (value) url.searchParams.set(key, value);
@@ -46,12 +66,23 @@ async function renderPng(query) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://127.0.0.1:${PORT}`);
 
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204, DEFAULT_HEADERS);
+    res.end();
+    return;
+  }
+
   if (url.pathname === '/health') {
-    return sendJson(res, 200, { ok: true });
+    return sendJson(res, 200, {
+      ok: true,
+      mode: MAP_SOURCE_URL ? 'cloud-url' : 'local-file',
+      mapSource: MAP_SOURCE_URL || MAP_FILE
+    });
   }
 
   if (url.pathname === '/render.png') {
     try {
+      const filename = safeFilename(url.searchParams.get('filename'));
       const buffer = await renderPng({
         layers: url.searchParams.get('layers'),
         ref: url.searchParams.get('ref'),
@@ -60,8 +91,8 @@ const server = http.createServer(async (req, res) => {
 
       res.writeHead(200, {
         'Content-Type': 'image/png',
-        'Content-Disposition': 'inline; filename="mapa_piloto_armacao.png"',
-        'Access-Control-Allow-Origin': '*'
+        'Content-Disposition': `inline; filename="${filename}.png"`,
+        ...DEFAULT_HEADERS
       });
       res.end(buffer);
     } catch (error) {
@@ -74,5 +105,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Render server listening on http://127.0.0.1:${PORT}`);
+  const source = MAP_SOURCE_URL || MAP_FILE;
+  console.log(`Render server listening on port ${PORT}`);
+  console.log(`Map source: ${source}`);
 });
