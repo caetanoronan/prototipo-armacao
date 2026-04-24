@@ -4,6 +4,12 @@
 
 Garantir que qualquer pessoa consiga abrir o mapa publico e exportar PNG com os pontos, em qualquer lugar, sem depender do computador local do autor.
 
+## Versao resumida para campo
+
+Para uso rapido em celular/notebook durante operacao de campo:
+
+- `01_planejamento/PROTOCOLO_OPERACAO_CAMPO_1_PAGINA.md`
+
 ## Escopo
 
 Este protocolo cobre:

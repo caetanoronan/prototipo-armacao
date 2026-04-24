@@ -71,6 +71,7 @@ Com o site público aberto:
 Para operação diária, validação e contingência de exportação PNG:
 
 - `01_planejamento/PROTOCOLO_OPERACAO_EXPORTACAO_PNG.md`
+- `01_planejamento/PROTOCOLO_OPERACAO_CAMPO_1_PAGINA.md`
 
 ## Autoria e programa
 
