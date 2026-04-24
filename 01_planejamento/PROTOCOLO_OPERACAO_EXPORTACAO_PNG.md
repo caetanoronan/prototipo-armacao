@@ -9,6 +9,7 @@ Garantir que qualquer pessoa consiga abrir o mapa publico e exportar PNG com os 
 Para uso rapido em celular/notebook durante operacao de campo:
 
 - `01_planejamento/PROTOCOLO_OPERACAO_CAMPO_1_PAGINA.md`
+- `01_planejamento/OPERACAO_CAMPO_RAPIDA.html`
 
 ## Escopo
 

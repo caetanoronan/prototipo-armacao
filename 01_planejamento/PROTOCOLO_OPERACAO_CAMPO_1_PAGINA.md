@@ -1,5 +1,9 @@
 # Protocolo Rapido de Campo (1 Pagina)
 
+Versao em HTML otimizada para celular (acoes de um toque):
+
+- 01_planejamento/OPERACAO_CAMPO_RAPIDA.html
+
 ## Uso imediato
 
 1. Abrir o mapa:
