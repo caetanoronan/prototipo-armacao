@@ -66,6 +66,12 @@ Com o site público aberto:
 2. Clique em **Exportar PNG**.
 3. O download deve funcionar mesmo com `127.0.0.1:3030` desligado.
 
+## Protocolo operacional
+
+Para operação diária, validação e contingência de exportação PNG:
+
+- `01_planejamento/PROTOCOLO_OPERACAO_EXPORTACAO_PNG.md`
+
 ## Autoria e programa
 
 Projeto de Mestrado — PPGOceano/UFSC · 2026  
