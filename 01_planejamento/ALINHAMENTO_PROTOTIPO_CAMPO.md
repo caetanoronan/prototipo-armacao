@@ -3,6 +3,20 @@
 Data: 2026-04-21
 Projeto: Mestrado - Macrofitas Marinhas SC
 
+## Status de etapa concluida (2026-04-24)
+- [x] Etapa de Operacao Remota validada com sucesso.
+
+### Evidencias de validacao
+- Exportacao PNG executada com sucesso em dispositivo movel (celular).
+- Mapa publico ativo no GitHub Pages, com acesso externo.
+- Fluxo de render cloud ativo no Render para exportacao de PNG.
+- Protocolo operacional completo publicado.
+- Protocolo rapido de campo (1 pagina) publicado.
+- Pagina HTML mobile com acoes de um toque publicada.
+
+### Resultado operacional
+O prototipo passou a operar em modo remoto, permitindo impressao/exportacao de mapas com pontos em qualquer local com internet, sem dependencia do computador local do autor.
+
 ## Objetivo deste prototipo
 Validar, em pequena escala, o fluxo completo de campo -> controle de qualidade -> organizacao de dados -> produtos cartograficos, antes da campanha principal.
 
