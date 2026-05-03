@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerador de Mapas - Protótipo Armação</title>
+    <title>Gerador de Mapas - Protótipo Temporal de Macroalgas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
     <style>
         :root {
@@ -399,7 +399,7 @@
         <aside>
             <div class="brand">
                 <h1>Gerador de Mapas</h1>
-                <p>Clone funcional do padrão da infra, adaptado ao piloto de Armação. Selecione camadas, destaque referências e exporte o mapa em PNG.</p>
+                <p>Portal local para validar o fluxo de campo do <strong>Protótipo Temporal de Macroalgas</strong> — seis estações insulares para testes e exportações.</p>
             </div>
 
             <div class="stats">
@@ -441,8 +441,8 @@
 
         <section class="map-wrap" id="exportArea">
             <div class="map-title">
-                <h2>Mapa piloto - Armação</h2>
-                <p>Versão para evolução contínua do protótipo com camadas filtráveis</p>
+                <h2>Mapa Operacional - Protótipo Temporal de Macroalgas</h2>
+                <p>Portal local com seis estações insulares: Ponta das Canas, Sambaqui, Ponta do Coral, Saco dos Limões, Ribeirão da Ilha, Caieira da Barra do Sul.</p>
             </div>
 
             <div class="north" aria-label="Rosa dos ventos">
@@ -478,76 +478,78 @@
     <script>
         const CSV_URL = "../04_dados_campo/raw/referencias_prototipo_armacao.csv";
         const FALLBACK_CSV = `name,lat,lon,layer
-Ponta das Campanhas,-27.749367,-48.499284,quadrat_photo
-Ponto 1,-27.750445,-48.500327,quadrat_photo
-Ponto 2,-27.749546,-48.500338,quadrat_photo
-Ponto 3,-27.748517,-48.498916,quadrat_photo
-Ponto 4,-27.747794,-48.499240,quadrat_photo
-Ilha de Fora,-27.747719,-48.498424,quadrat_photo
-Ponta das Campanhas,-27.749367,-48.499284,water_sample_lab
-Ponto 1,-27.750445,-48.500327,water_sample_lab
-Ponto 2,-27.749546,-48.500338,water_sample_lab
-Ponto 3,-27.748517,-48.498916,water_sample_lab
-Ponto 4,-27.747794,-48.499240,water_sample_lab
-Ilha de Fora,-27.747719,-48.498424,water_sample_lab
-Ponta das Campanhas,-27.749367,-48.499284,water_probe
-Ponto 1,-27.750445,-48.500327,water_probe
-Ponto 2,-27.749546,-48.500338,water_probe
-Ponto 3,-27.748517,-48.498916,water_probe
-Ponto 4,-27.747794,-48.499240,water_probe
-Ilha de Fora,-27.747719,-48.498424,water_probe
-Ponta das Campanhas,-27.749367,-48.499284,secchi
-Ponto 1,-27.750445,-48.500327,secchi
-Ponto 2,-27.749546,-48.500338,secchi
-Ponto 3,-27.748517,-48.498916,secchi
-Ponto 4,-27.747794,-48.499240,secchi
-Ilha de Fora,-27.747719,-48.498424,secchi
-Ponta das Campanhas,-27.749367,-48.499284,drone
-Ponto 1,-27.750445,-48.500327,drone
-Ponto 2,-27.749546,-48.500338,drone
-Ponto 3,-27.748517,-48.498916,drone
-Ponto 4,-27.747794,-48.499240,drone
-Ilha de Fora,-27.747719,-48.498424,drone
-Ponta das Campanhas,-27.749367,-48.499284,algae_collect_taxonomy
-Ponto 1,-27.750445,-48.500327,algae_collect_taxonomy
-Ponto 2,-27.749546,-48.500338,algae_collect_taxonomy
-Ponto 3,-27.748517,-48.498916,algae_collect_taxonomy
-Ponto 4,-27.747794,-48.499240,algae_collect_taxonomy
-Ilha de Fora,-27.747719,-48.498424,algae_collect_taxonomy
-Ponta das Campanhas,-27.749367,-48.499284,algae_photo_in_situ
-Ponto 1,-27.750445,-48.500327,algae_photo_in_situ
-Ponto 2,-27.749546,-48.500338,algae_photo_in_situ
-Ponto 3,-27.748517,-48.498916,algae_photo_in_situ
-Ponto 4,-27.747794,-48.499240,algae_photo_in_situ
-Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
+    Ponta das Canas,-27.393333,-48.433333,quadrat_photo
+    Sambaqui,-27.488333,-48.540000,quadrat_photo
+    Ponta do Coral,-27.570000,-48.536667,quadrat_photo
+    Saco dos Limoes,-27.613333,-48.553333,quadrat_photo
+    Ribeirao da Ilha,-27.731667,-48.565000,quadrat_photo
+    Caieira da Barra do Sul,-27.813333,-48.561667,quadrat_photo
+    Ponta das Canas,-27.393333,-48.433333,water_sample_lab
+    Sambaqui,-27.488333,-48.540000,water_sample_lab
+    Ponta do Coral,-27.570000,-48.536667,water_sample_lab
+    Saco dos Limoes,-27.613333,-48.553333,water_sample_lab
+    Ribeirao da Ilha,-27.731667,-48.565000,water_sample_lab
+    Caieira da Barra do Sul,-27.813333,-48.561667,water_sample_lab
+    Ponta das Canas,-27.393333,-48.433333,water_probe
+    Sambaqui,-27.488333,-48.540000,water_probe
+    Ponta do Coral,-27.570000,-48.536667,water_probe
+    Saco dos Limoes,-27.613333,-48.553333,water_probe
+    Ribeirao da Ilha,-27.731667,-48.565000,water_probe
+    Caieira da Barra do Sul,-27.813333,-48.561667,water_probe
+    Ponta das Canas,-27.393333,-48.433333,algae_collect_taxonomy
+    Sambaqui,-27.488333,-48.540000,algae_collect_taxonomy
+    Ponta do Coral,-27.570000,-48.536667,algae_collect_taxonomy
+    Saco dos Limoes,-27.613333,-48.553333,algae_collect_taxonomy
+    Ribeirao da Ilha,-27.731667,-48.565000,algae_collect_taxonomy
+    Caieira da Barra do Sul,-27.813333,-48.561667,algae_collect_taxonomy
+    Ponta das Canas,-27.393333,-48.433333,algae_photo_in_situ
+    Sambaqui,-27.488333,-48.540000,algae_photo_in_situ
+    Ponta do Coral,-27.570000,-48.536667,algae_photo_in_situ
+    Saco dos Limoes,-27.613333,-48.553333,algae_photo_in_situ
+    Ribeirao da Ilha,-27.731667,-48.565000,algae_photo_in_situ
+    Caieira da Barra do Sul,-27.813333,-48.561667,algae_photo_in_situ`;
 
+        // Camadas ativas e seus rótulos — alinhadas ao protótipo
         const LAYER_COLORS = {
             quadrat_photo: "#0ea5e9",
+            quadrat_biomass: "#0ea5e9",
             water_sample_lab: "#2563eb",
             water_probe: "#14b8a6",
-            secchi: "#f59e0b",
-            drone: "#ef4444",
             algae_collect_taxonomy: "#7c3aed",
-            algae_photo_in_situ: "#22c55e"
+            taxonomy_collect: "#7c3aed",
+            algae_photo_in_situ: "#22c55e",
+            photo_in_situ: "#22c55e",
+            free_dive_survey: "#ef4444"
         };
 
         const LAYER_LABELS = {
-            quadrat_photo: "quadrat_photo",
-            water_sample_lab: "water_sample_lab",
-            water_probe: "water_probe",
-            secchi: "secchi",
-            drone: "drone",
-            algae_collect_taxonomy: "algae_collect_taxonomy",
-            algae_photo_in_situ: "algae_photo_in_situ"
+            quadrat_photo: "Quadrados 25 x 25 cm / biomassa",
+            quadrat_biomass: "Quadrados 25 x 25 cm / biomassa",
+            water_sample_lab: "Amostra de água para laboratório",
+            water_probe: "Temperatura e salinidade",
+            
+            algae_collect_taxonomy: "Coleta taxonômica complementar",
+            taxonomy_collect: "Coleta taxonômica complementar",
+            algae_photo_in_situ: "Foto in situ",
+            photo_in_situ: "Foto in situ",
+            free_dive_survey: "Mergulho livre infralitoral"
         };
+
+        const MAP_BOUNDS = [
+            [-27.86, -48.62],
+            [-27.35, -48.39]
+        ];
+
+        const INITIAL_CENTER = [-27.60, -48.50];
+        const INITIAL_ZOOM = 11;
 
         const map = L.map("map", {
             zoomControl: true,
-            minZoom: 14,
+            minZoom: 10,
             maxZoom: 19,
-            maxBounds: [[-27.7539, -48.5027], [-27.7453, -48.4964]],
+            maxBounds: MAP_BOUNDS,
             maxBoundsViscosity: 0.95
-        }).setView([-27.7493, -48.4993], 17);
+        }).setView(INITIAL_CENTER, INITIAL_ZOOM);
 
         const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
@@ -581,11 +583,14 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
         let activeReferenceName = null;
         const mapBounds = [];
         let data = [];
+        // chaves de camada presentes nos dados carregados (usado para filtrar camadas sem registros)
+        let presentLayerKeys = new Set();
         const activeLayers = new Set(Object.keys(LAYER_COLORS));
         const queryState = new URLSearchParams(window.location.search);
         let currentBaseLayer = 'osm';
-        const DEFAULT_CLOUD_RENDER = 'https://prototipo-praia-armacao.onrender.com';
+        const DEFAULT_CLOUD_RENDER = '';
         const DEFAULT_LOCAL_RENDER = 'http://127.0.0.1:3030';
+        const DEPRECATED_RENDER_HOSTS = ['prototipo-praia-armacao.onrender.com'];
 
         window.__mapReady = false;
 
@@ -680,6 +685,9 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
                 activeLayers.clear();
 
                 Object.keys(LAYER_COLORS).forEach((layer) => {
+                    // só tenta ativar camadas que existem nos dados
+                    if (presentLayerKeys.size && !presentLayerKeys.has(layer)) return;
+
                     const checkbox = document.querySelector(`input[data-layer="${layer}"]`);
                     const shouldBeActive = requestedLayers.has(layer);
 
@@ -689,9 +697,9 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
 
                     if (shouldBeActive) {
                         activeLayers.add(layer);
-                        groups[layer].addTo(map);
+                        if (groups[layer]) groups[layer].addTo(map);
                     } else {
-                        map.removeLayer(groups[layer]);
+                        if (groups[layer]) map.removeLayer(groups[layer]);
                     }
                 });
             }
@@ -738,28 +746,43 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
             }
         }
 
+        // Constrói a lista de camadas agrupando por rótulo único (evita duplicatas)
         function buildLayerList() {
             const layerList = document.getElementById("layerList");
             layerList.innerHTML = "";
 
-            Object.entries(LAYER_COLORS).forEach(([layer, color]) => {
+            // Mapeia rótulos únicos para chaves de camada
+            const labelToKeys = {};
+            Object.keys(LAYER_LABELS).forEach((key) => {
+                const label = LAYER_LABELS[key] || key;
+                if (!labelToKeys[label]) labelToKeys[label] = [];
+                labelToKeys[label].push(key);
+            });
+
+            Object.entries(labelToKeys).forEach(([label, keys]) => {
+                const color = LAYER_COLORS[keys[0]] || "#334155";
                 const row = document.createElement("div");
                 row.className = "layer-item";
+
+                // usamos data-keys com lista separada por vírgula
                 row.innerHTML = `
-                    <input type="checkbox" checked data-layer="${layer}" />
+                    <input type="checkbox" checked data-keys="${keys.join(",")}" />
                     <span class="dot" style="background:${color}"></span>
-                    <label>${LAYER_LABELS[layer]}</label>
+                    <label>${label}</label>
                 `;
 
                 const checkbox = row.querySelector("input");
                 checkbox.addEventListener("change", () => {
-                    if (checkbox.checked) {
-                        activeLayers.add(layer);
-                        groups[layer].addTo(map);
-                    } else {
-                        activeLayers.delete(layer);
-                        map.removeLayer(groups[layer]);
-                    }
+                    const keyList = (checkbox.dataset.keys || "").split(",").filter(Boolean);
+                    keyList.forEach((k) => {
+                        if (checkbox.checked) {
+                            activeLayers.add(k);
+                            if (groups[k]) groups[k].addTo(map);
+                        } else {
+                            activeLayers.delete(k);
+                            if (groups[k]) map.removeLayer(groups[k]);
+                        }
+                    });
                     updateStats();
                 });
 
@@ -784,14 +807,20 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
             });
         }
 
+        // Legenda sem duplicatas — agrupa por rótulo
         function buildLegend() {
             const legendList = document.getElementById("legendList");
             legendList.innerHTML = "";
 
-            Object.entries(LAYER_COLORS).forEach(([layer, color]) => {
+            const seen = new Set();
+            Object.keys(LAYER_LABELS).forEach((key) => {
+                const label = LAYER_LABELS[key] || key;
+                if (seen.has(label)) return;
+                seen.add(label);
+                const color = LAYER_COLORS[key] || "#334155";
                 const row = document.createElement("div");
                 row.className = "legend-row";
-                row.innerHTML = `<span class="swatch" style="background:${color}"></span><span>${layer}</span>`;
+                row.innerHTML = `<span class="swatch" style="background:${color}"></span><span>${label}</span>`;
                 legendList.appendChild(row);
             });
         }
@@ -835,22 +864,25 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
                 .catch(() => FALLBACK_CSV)
                 .then((text) => {
                     const rows = parseCsv(text);
-                    data = rows;
-                    rows.forEach(addPointMarker);
-                    buildLayerList();
-                    buildReferenceList();
-                    buildLegend();
-                    applyQueryState();
-                    updateStats();
-                    if (mapBounds.length) {
-                        map.fitBounds(mapBounds, { padding: [30, 30] });
-                    }
-                    window.__mapReady = true;
+                        data = rows;
+                        // calcular chaves de camada presentes
+                        presentLayerKeys.clear();
+                        rows.forEach((r) => { if (r && r.layer) presentLayerKeys.add(r.layer); });
+                        rows.forEach(addPointMarker);
+                        buildLayerList();
+                        buildReferenceList();
+                        buildLegend();
+                        applyQueryState();
+                        updateStats();
+                        if (mapBounds.length) {
+                            map.fitBounds(mapBounds, { padding: [30, 30] });
+                        }
+                        window.__mapReady = true;
                 });
         }
 
         async function exportPng() {
-            const filename = (document.getElementById("filenameInput").value || "mapa_piloto_armacao").trim();
+            const filename = (document.getElementById("filenameInput").value || "mapa_piloto_macroalgas").trim();
             const layers = Array.from(activeLayers).join(',');
             const ref = activeReferenceName || '';
             const base = currentBaseLayer;
@@ -861,15 +893,12 @@ Ilha de Fora,-27.747719,-48.498424,algae_photo_in_situ`;
             const storedRender = (localStorage.getItem('renderServiceUrl') || '').trim();
             const cloudRender = DEFAULT_CLOUD_RENDER.includes('SEU-SERVICO-RENDER') ? '' : DEFAULT_CLOUD_RENDER;
 
-            [queryRender, globalRender, storedRender, cloudRender].forEach((url) => {
+            [queryRender, globalRender, storedRender, DEFAULT_LOCAL_RENDER, cloudRender].forEach((url) => {
                 if (!url) return;
                 const normalized = url.replace(/\/$/, '');
+                if (DEPRECATED_RENDER_HOSTS.some((host) => normalized.includes(host))) return;
                 if (!candidates.includes(normalized)) candidates.push(normalized);
             });
-
-            if (!candidates.includes(DEFAULT_LOCAL_RENDER)) {
-                candidates.push(DEFAULT_LOCAL_RENDER);
-            }
 
             try {
                 let lastError = null;
